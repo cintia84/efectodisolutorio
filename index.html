@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Efecto de Disolución</title>
+</head>
+<body>
+    <div class="svg-container">
+        <div class="interactive-group">
+            <div class="text-group">
+                <img src="vista-de-un-animal-de-dibujos-animados-practicando-el-yoga.jpg" alt="Animal haciendo yoga">
+            </div>
+        </div>
+        <svg width="0" height="0" style="position: absolute;">
+            <defs>
+                <filter id="dissolve-filter" x="-200%" y="-200%" width="500%" height="500%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="1" result="bigNoise" seed="0"/> 
+                    <feComponentTransfer in="bigNoise" result="bigNoiseAdjusted"> 
+                        <feFuncR type="linear" slope="2" intercept="-0.4"/>
+                        <feFuncG type="linear" slope="2" intercept="-0.4"/>
+                    </feComponentTransfer>
+                    <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="2" result="fineNoise"/>
+                    <feMerge result="combinedNoise">
+                        <feMergeNode in="bigNoiseAdjusted"/>
+                        <feMergeNode in="fineNoise"/>
+                    </feMerge>
+                    <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="0" xChannelSelector="R" yChannelSelector="G"/> 
+                </filter>
+            </defs>
+        </svg>
+    </div>
+    <script src="script1.js"></script>
+</body>
+</html>
